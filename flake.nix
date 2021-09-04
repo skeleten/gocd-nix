@@ -16,9 +16,9 @@
             stdenv = pkgs.stdenv;
             lib = nixpkgs.lib;
           };          
-      in
-      rec {
+      in rec {
         packages = import ./pkgs drvenv;
+        modules = import ./modules drvenv;
         defaultPackage = packages.gocd-agent;
       });
 }
