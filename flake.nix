@@ -7,18 +7,20 @@
   };
 
   outputs = { self, nixpkgs, utils }:
-    let      
-    in utils.lib.eachDefaultSystem (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-          drvenv = {
-            system = system;
-            pkgs = pkgs;
-            stdenv = pkgs.stdenv;
-            lib = nixpkgs.lib;
-          };          
-      in rec {
-        packages = import ./pkgs drvenv;
-        modules = import ./modules drvenv;
-        defaultPackage = packages.gocd-agent;
-      });
+    let customPkgs = callPackage: {
+          gocd-agent = callPackage ./pkgs/gocd-agent.nix {};
+          gocd-server = callPackage ./pkgs/gocd-server.nix {};
+        };
+    in
+    utils.lib.eachDefaultSystem (system:
+      let pkgs = nixpkgs.legacyPackages.${system};          
+      in {
+        packages = utils.lib.flattenTree (customPkgs pkgs.callPackage);
+      }) // {
+        overlay = (final: prev: customPkgs final.callPackage);
+        nixosModules =
+          {
+            gocd-agent = ./modules/gocd-agent.nix;
+          };
+      };
 }

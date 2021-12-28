@@ -52,7 +52,7 @@ in {
         default = [ nixpkgs.stdenv nixpkgs.git nixpkgs.nix config.programs.ssh.package ];
         defaultText = literalExample "[ nixpkgs.stdenv nixpkgs.git nixpkgs.nix config.programs.ssh.package ]";
         type = types.listOf types.package;
-        description
+        description = 
           ''
           Packages to add to PATH for the Go.CD agent process.
           '';
