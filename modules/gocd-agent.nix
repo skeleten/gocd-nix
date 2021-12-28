@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.services.gocd-agent;
+  cfg = config.services.gocd-agent-nix;
 in {
   options = {
     services.gocd-agent-nix = {
