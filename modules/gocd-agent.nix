@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
-
 with lib;
-
 let
   cfg = config.services.gocd-agent;
 in {
@@ -157,7 +155,7 @@ in {
     };
   };
 
-  config = mkIf cf.enable {
+  config = mkIf cfg.enable {
     
     users.groups = optionalAttrs (cfg.group == "gocd-agent") {
       gocd-agent.gid = config.ids.gids.gocd-agent;
