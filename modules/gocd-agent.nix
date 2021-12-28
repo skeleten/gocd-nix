@@ -110,8 +110,8 @@ in {
       startupOptions = mkOption {
         type = types.listOf types.str;
         default = [
-          #"-Xms${cfg.initialJavaHeapSize}"
-          #"-Xmx${cfg.maxJavaHeapMemory}"
+          "-Xms${cfg.initialJavaHeapSize}"
+          "-Xmx${cfg.maxJavaHeapMemory}"
           "-Djava.io.tmpdir=/tmp"
           "-Dcruise.console.publish.interval=10"
           "-Djava.security.egd=file:/dev/./urandom"
