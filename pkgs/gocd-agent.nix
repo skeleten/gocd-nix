@@ -1,11 +1,11 @@
 { system, pkgs, lib, stdenv, ... }:
 stdenv.mkDerivation rec {
   pname = "gocd-agent";
-  version = "21.2.0-12498";
+  version = "21.3.0-13067";  
 
   src = builtins.fetchurl {
     url = "https://download.go.cd/binaries/${version}/generic/go-agent-${version}.zip";
-    sha256 = "1wirhkap4y8hr6krp3kx6kzz5p8zj654b8n8y87vy65rih2khphh";
+    sha256 = "1hyi23gxxz00yd5ifzz7hp90jpfwhy0nnb2b4a2fj6ylhlkw78i9";   
   };
 
   meta = with lib; {

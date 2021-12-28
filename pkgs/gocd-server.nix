@@ -1,11 +1,11 @@
 { system, pkgs, lib, stdenv, ...}:
 stdenv.mkDerivation rec {
   pname = "gocd-server";
-  version = "21.2.0-12498";
+  version = "21.3.0-13067";
 
   src = builtins.fetchurl {
     url = "https://download.go.cd/binaries/${version}/generic/go-server-${version}.zip";
-    sha256 = "1ina9kq7jacbnh9qyjl6spxm8l36hmxjgzvcmwv3d1dxalyd4rd4";
+    sha256 = "0gzmdvg0jxhhvgzqy6n8ycnni5wr7w8wwxsfig21sis97ifmcwkb";
   };
 
   meta = with lib; {
@@ -26,5 +26,5 @@ stdenv.mkDerivation rec {
       unzip $src -d $out
       mv $out/go-server-${baseVersion} $out/go-server
       mkdir -p $out/go-server/conf
-      '';  
+      '';
 }
