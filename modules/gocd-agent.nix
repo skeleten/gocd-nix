@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixpkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -39,8 +39,8 @@ in {
       };
 
       javaPackage = mkOption {
-        default = nixpkgs.adoptopenjdk-jre-hotspot-bin-15;
-        defaultText = "nixpkgs.adoptopenjdk-jre-hotspot-bin-15";
+        default = pkgs.adoptopenjdk-jre-hotspot-bin-15;
+        defaultText = "pkgs.adoptopenjdk-jre-hotspot-bin-15";
         type = types.package;
         description =
           ''
@@ -49,8 +49,8 @@ in {
       };
 
       package = mkOption {
-        default = [ nixpkgs.stdenv nixpkgs.git nixpkgs.nix config.programs.ssh.package ];
-        defaultText = literalExample "[ nixpkgs.stdenv nixpkgs.git nixpkgs.nix config.programs.ssh.package ]";
+        default = [ pkgs.stdenv pkgs.git pkgs.nix config.programs.ssh.package ];
+        defaultText = literalExample "[ pkgs.stdenv pkgs.git pkgs.nix config.programs.ssh.package ]";
         type = types.listOf types.package;
         description = 
           ''
