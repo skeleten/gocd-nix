@@ -20,7 +20,7 @@
         overlay = (final: prev: customPkgs final.callPackage);
         nixosModules =
           {
-            gocd-agent = import ./modules/gocd-agent.nix;
+            gocd-agent = (import ./modules/gocd-agent.nix);
           };
       };
 }
