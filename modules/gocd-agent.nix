@@ -155,7 +155,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {    
+  config = mkIf cfg.enable { 
     users.groups = optionalAttrs (cfg.group == "gocd-agent") {
       gocd-agent.gid = config.ids.gids.gocd-agent;
     };
@@ -216,7 +216,7 @@ in {
             -serverUrl ${cfg.goServer}
         '';
 
-      servicesConfig = {
+      serviceConfig = {
         User = cfg.user;
         WorkingDirectory = cfg.workDir;
         RestartSec = 30;
