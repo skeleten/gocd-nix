@@ -158,6 +158,7 @@ in {
   };
 
   config = mkIf cf.enable {
+    
     users.groups = optionalAttrs (cfg.group == "gocd-agent") {
       gocd-agent.gid = config.ids.gids.gocd-agent;
     };
