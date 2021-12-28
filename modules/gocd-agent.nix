@@ -4,8 +4,8 @@ let
   cfg = config.services.gocd-agent;
 in {
   options = {
-    services.gocd-agent = {
-      enable = mkEnableOption "gocd-agent";
+    services.gocd-agent-nix = {
+      enable = mkEnableOption "gocd-agent-nix";
 
       user = mkOption {
         default = "gocd-agent";
