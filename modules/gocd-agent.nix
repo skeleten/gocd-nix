@@ -46,7 +46,7 @@ in {
           '';
       };
 
-      package = mkOption {
+      packages = mkOption {
         default = [ pkgs.stdenv pkgs.git pkgs.nix config.programs.ssh.package ];
         defaultText = literalExample "[ pkgs.stdenv pkgs.git pkgs.nix config.programs.ssh.package ]";
         type = types.listOf types.package;
@@ -110,8 +110,8 @@ in {
       startupOptions = mkOption {
         type = types.listOf types.str;
         default = [
-          "-Xms${cfg.initialJavaHeapSize}"
-          "-Xmx${cfg.maxJavaHeapMemory}"
+          #"-Xms${cfg.initialJavaHeapSize}"
+          #"-Xmx${cfg.maxJavaHeapMemory}"
           "-Djava.io.tmpdir=/tmp"
           "-Dcruise.console.publish.interval=10"
           "-Djava.security.egd=file:/dev/./urandom"
@@ -155,8 +155,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {
-    
+  config = mkIf cfg.enable {    
     users.groups = optionalAttrs (cfg.group == "gocd-agent") {
       gocd-agent.gid = config.ids.gids.gocd-agent;
     };
@@ -188,7 +187,7 @@ in {
           {
             NIX_REMOTE = "daemon";
             AGENT_WORK_DIR = cfg.workDir;
-            AGENT_STARTUP_ARGS = ''${concaatStringsSep " " cfg.startupOptions}'';
+            AGENT_STARTUP_ARGS = ''${concatStringsSep " " cfg.startupOptions}'';
             LOG_DIR = cfg.workDir;
             LOG_FILE = "${cfg.workDir}/go-agent-start.log";
           } //
